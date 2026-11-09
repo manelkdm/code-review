@@ -6,9 +6,9 @@ from .security import safe_markdown as safe
 
 
 def markdown(review):
-    lines = ["# Rapport de revue de code", "", f"Exécution : \`{review.run_id}\`", "",
+    lines = ["# Rapport de revue de code", "", f"Exécution : `{review.run_id}`", "",
         f"Dépôt : {safe(review.repository)} · PR {review.pr} · GitHub Issue #{review.issue_id}", "",
-        f"Commit analysé : \`{review.head_sha}\`", "",
+        f"Commit analysé : `{review.head_sha}`", "",
         f"**Recommandation : {review.decision}**", "",
         "Une personne doit vérifier les preuves et prendre la décision finale. Aucune fusion automatique.", ""]
     if review.demo:
@@ -60,7 +60,7 @@ def publication_text(review):
     from .connectors import COMMENT_MARKER
     lines = [
         COMMENT_MARKER, "## Revue IA — sept agents", "",
-        f"GitHub Issue : #{review.issue_id} · Commit : \`{review.head_sha}\`", "",
+        f"GitHub Issue : #{review.issue_id} · Commit : `{review.head_sha}`", "",
         f"**Recommandation : {review.decision}**", "",
         "Validation humaine obligatoire. Aucune fusion automatique.", "",
     ]

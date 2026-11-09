@@ -10,9 +10,18 @@ def analyze(model, number, instruction, payload):
             limitations=[f"Échec {type(exc).__name__} ; vérifier le service et relancer."])
 
 
+
 def code_payload(context):
-    return {"diff": context.diff, "standards": context.standards,
-            "head_sha": context.head_sha, "scope": context.warnings}
+    return {
+        "issue": {
+            "title": context.issue_subject,
+            "description": context.issue_description,
+        },
+        "diff": context.diff,
+        "standards": context.standards,
+        "head_sha": context.head_sha,
+    }
+
 
 
 def append_tools(result, context, names):

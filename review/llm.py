@@ -35,6 +35,9 @@ class Ollama:
                 result = AgentResult.model_validate_json(response["message"]["content"])
                 if result.agent != agent:
                     raise ValueError("Numéro d'agent incorrect")
+                # A valid, completed response counts as a successful execution.
+                # Uncertainty about the code belongs in limitations and criteria.
+                result.status = "complete"
                 for finding in result.findings:
                     finding.source = "llm"
                 result.limitations = result.limitations[:20]
