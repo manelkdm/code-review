@@ -9,3 +9,9 @@ def divide(a, b):
 
 def substract(a, b):
     return a - b
+
+
+def square_root(a):
+    if a < 0:
+        raise ValueError("racine carree d'un nombre negatif")
+    return a ** 0.5
