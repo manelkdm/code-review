@@ -13,5 +13,5 @@ def substract(a, b):
 
 def square_root(a):
     if a < 0:
-        raise ValueError("racine carree d'un nombre negatif")
+        raise ValueError("racine carrée d'un nombre négatif")
     return a ** 0.5
