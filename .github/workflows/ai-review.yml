@@ -93,7 +93,7 @@ jobs:
       - name: Start Ollama on the temporary runner
         if: steps.target.outputs.eligible == 'true'
         env:
-          OLLAMA_MODEL: ${{ vars.REVIEW_OLLAMA_MODEL || 'qwen2.5-coder:1.5b' }}
+          OLLAMA_MODEL: ${{ vars.REVIEW_OLLAMA_MODEL || 'qwen2.5-coder:7b' }}
         run: |
           curl -fsSL https://ollama.com/install.sh | sh
           ollama serve > /tmp/ollama.log 2>&1 &
