@@ -7,5 +7,8 @@ def run(context, model):
         "Extrais les exigences explicites et les critères d'acceptation. Attribue CA-1, CA-2, etc. "
         "Chaque critère cite un passage exact de l'issue GitHub dans evidence et reste unknown. "
         "N'invente pas de besoin. Signale les ambiguïtés et contraintes. "
-        "Si l'issue ne contient pas de critère vérifiable, laisse criteria vide.",
+        "Si l'issue ne contient pas de critère vérifiable, laisse criteria vide."
+        "Tu analyses uniquement le texte de l'issue, pas le code. "
+        "Le champ evidence doit contenir une citation exacte de l'issue. "
+        "N'invente jamais de code, de tests ou de preuves d'implémentation. ",
         {"subject": context.issue_subject, "description": context.issue_description})
