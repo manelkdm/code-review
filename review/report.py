@@ -1,4 +1,4 @@
-"""Rapport lisible et historique SQLite local."""
+"""Generate Markdown and JSON review reports."""
 from pathlib import Path
 from .security import safe_markdown as safe
 

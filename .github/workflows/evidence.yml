@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-# Ce job n'a aucun jeton OpenProject ni accès à Ollama.
+# The evidence job has no write token or access to Ollama.
 permissions:
   contents: read
 

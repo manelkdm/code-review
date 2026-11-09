@@ -1,4 +1,4 @@
-"""CLI: demo, GitHub Issue + PR review, publish and CSV export."""
+"""CLI: demo, GitHub PR review and publication."""
 import argparse
 import os
 from pathlib import Path
