@@ -1,10 +1,11 @@
-name: Tests du robot
+name: Reviewer Unit Tests
 
 on:
   push:
     branches: [main]
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 permissions:
   contents: read

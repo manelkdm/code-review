@@ -96,14 +96,24 @@ class ArtifactTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 read_evidence(path, "b" * 40)
 
+    
     def test_symlink_refused(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "evidence.json"
             path.write_text(clean_evidence().model_dump_json())
+
             link = Path(tmp) / "link.json"
-            link.symlink_to(path)
+
+            try:
+                link.symlink_to(path)
+            except OSError as exc:
+                if getattr(exc, "winerror", None) == 1314:
+                    self.skipTest("Windows symlink privileges unavailable")
+                raise
+
             with self.assertRaises(ValueError):
                 read_evidence(link)
+
 
     def test_oversized_file_refused(self):
         with tempfile.TemporaryDirectory() as tmp:

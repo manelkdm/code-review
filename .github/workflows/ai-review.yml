@@ -1,8 +1,8 @@
-name: Revue IA (sept agents)
+name: AI Code Review
 
 on:
   workflow_run:
-    workflows: ["Preuves de la Pull Request"]
+    workflows: ["PR Evidence Checks"]
     types: [completed]
 
 permissions:
@@ -109,7 +109,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          OLLAMA_MODEL: ${{ vars.REVIEW_OLLAMA_MODEL || 'qwen2.5-coder:1.5b' }}
+          OLLAMA_MODEL: ${{ vars.REVIEW_OLLAMA_MODEL || 'qwen2.5-coder:7b' }}
           OLLAMA_TIMEOUT: '480'
           PR_NUMBER: ${{ steps.target.outputs.pr }}
         run: |

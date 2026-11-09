@@ -12,6 +12,3 @@ Décrivez brièvement la solution proposée.
 - [ ] Les tests et contrôles statiques ont été examinés.
 - [ ] Aucun secret n'a été ajouté.
 
-## Revue humaine
-
-La revue IA est indicative. Une approbation humaine reste obligatoire.
