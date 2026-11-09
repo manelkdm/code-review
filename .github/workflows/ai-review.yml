@@ -1,15 +1,15 @@
-name: Revue IA (sept agents)
+name: Revue de code par IA
 
 on:
   workflow_run:
-    workflows: ["Preuves de la Pull Request"]
+    workflows: ["Analyse statique et tests de la PR"]
     types: [completed]
 
 permissions:
   actions: read
   contents: read
   issues: write
-  pull-requests: read
+  pull-requests: write
 
 concurrency:
   group: ai-review-${{ github.event.workflow_run.id }}
