@@ -1,8 +1,8 @@
-name: Revue IA (sept agents)
+name: AI Code Review
 
 on:
   workflow_run:
-    workflows: ["Preuves de la Pull Request"]
+    workflows: ["PR Evidence Checks"]
     types: [completed]
 
 permissions:
