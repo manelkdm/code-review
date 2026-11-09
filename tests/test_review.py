@@ -202,7 +202,7 @@ class ModelTests(unittest.TestCase):
         self.assertNotIn("<script>", output)
 
     def test_redact_env(self):
-        with patch.dict(os.environ, {"GITHUB_TOKEN": "secret-abcdef123"}):
+        with patch.dict(os.environ, {"GITHUB_TOKEN": "secret-abcdef123"}):  # gitleaks:allow
             self.assertNotIn("secret-abcdef123", redact("le jeton secret-abcdef123"))
 
 
