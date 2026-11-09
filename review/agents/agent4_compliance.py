@@ -5,7 +5,7 @@ from ..models import Criterion
 
 def run(context, model, requirements):
     payload = code_payload(context)
-    payload["requirements"] = [x.model_dump() for x in requirements.criteria]
+    payload["requirements"] = [{"id": c.id, "text": c.text} for c in requirements.criteria]
     result = analyze(model, 4,
         "Compare chaque critère au diff. Reprends exactement les identifiants et textes. "
         "supported veut dire étayé par le code visible, pas validé en fonctionnement. "

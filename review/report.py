@@ -69,7 +69,10 @@ def publication_text(review):
     lines += ["### Motifs", ""] + ["- " + safe(x) for x in review.reasons[:12]]
     lines += ["", "### Agents", ""]
     for result in review.results:
-        lines.append(f"- **Agent {result.agent}** : {result.status} — {safe(result.summary[:250])}")
+        lines.append(
+            f"- **Agent {result.agent}** : {result.status} — "
+            f"{safe(result.summary)}"
+        )
         for finding in result.findings[:3]:
             lines.append(f"  - {finding.severity} : {safe(finding.title)} ({safe(finding.file or 'fichier non précisé')})")
     lines += ["", "Le rapport complet (Markdown et JSON) est disponible dans les artefacts de cette exécution GitHub Actions."]
