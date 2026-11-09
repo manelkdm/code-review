@@ -12,7 +12,7 @@ from review.agents.agent4_compliance import run as compliance
 from review.connectors import GitHub, fetch_context, repo_path, linked_issue
 from review.http import Client, NoRedirect
 from review.publish import publish
-from review.report import save, export_csv
+from review.report import save
 from review.security import redact, safe_markdown
 
 
@@ -89,14 +89,12 @@ class PipelineTests(unittest.TestCase):
         model.analyze = response
         self.assertNotIn("example-secret-value", run(context(), model).model_dump_json())
 
-    def test_report_and_csv(self):
+    def test_report(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             dest = save(run(context(demo=True), DemoModel()), root)
-            self.assertIn("DÉMONSTRATION", (dest / "report.md").read_text())
-            self.assertEqual(len(json.loads((dest / "review.json").read_text())["results"]), 7)
-            export_csv(root, root / "history.csv")
-            self.assertIn("team/calculator", (root / "history.csv").read_text())
+            self.assertIn("DÉMONSTRATION", (dest / "report.md").read_text(encoding="utf-8"))
+            self.assertEqual(len(json.loads((dest / "review.json").read_text(encoding="utf-8"))["results"]), 7)
 
 
 class ConnectorTests(unittest.TestCase):

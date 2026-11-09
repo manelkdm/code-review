@@ -1,6 +1,4 @@
 """Rapport lisible et historique SQLite local."""
-import csv
-import sqlite3
 from pathlib import Path
 from .security import safe_markdown as safe
 
@@ -39,21 +37,7 @@ def save(review, root: Path):
     dest.mkdir(mode=0o700)
     (dest / "review.json").write_text(review.model_dump_json(indent=2), encoding="utf-8")
     (dest / "report.md").write_text(markdown(review), encoding="utf-8")
-    with sqlite3.connect(root / "history.sqlite3") as db:
-        db.execute("CREATE TABLE IF NOT EXISTS reviews (run_id TEXT PRIMARY KEY, created_at TEXT, repository TEXT, pr INTEGER, ticket INTEGER, head_sha TEXT, decision TEXT, demo INTEGER)")
-        db.execute("INSERT INTO reviews VALUES (?,?,?,?,?,?,?,?)", (review.run_id, review.created_at, review.repository, review.pr, review.issue_id, review.head_sha, review.decision, int(review.demo)))
     return dest
-
-
-def export_csv(root: Path, output: Path):
-    database = root / "history.sqlite3"
-    if not database.exists():
-        raise ValueError("Aucun historique disponible. Lancez une revue d'abord.")
-    with sqlite3.connect(database) as db, output.open("w", encoding="utf-8", newline="") as f:
-        cursor = db.execute("SELECT * FROM reviews ORDER BY created_at DESC")
-        writer = csv.writer(f)
-        writer.writerow([c[0] for c in cursor.description])
-        writer.writerows(cursor)
 
 
 def publication_text(review):

@@ -41,7 +41,7 @@ class EvidenceTests(unittest.TestCase):
             self.assertIn("COVERAGE_FILE", extra_env)
             return 0, "", ""
         with patch.object(collector, "git_state", return_value="a" * 40), patch.object(collector, "command", side_effect=fake_command):
-            result = collector.collect(Path("/tmp"), True)
+            result = collector.collect(Path.cwd(), True)
         self.assertEqual(result.coverage_percent, 88.5)
         self.assertEqual(result.tests_run, 1)
         self.assertEqual(result.tools["ruff"].status, "failed")
@@ -49,8 +49,13 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(result.tools["gitleaks"].status, "passed")
 
     def test_absent_tools_are_errors_not_success(self):
-        with patch.object(collector, "git_state", return_value="a" * 40), patch.object(collector, "command", return_value=(127, "", "not found")):
-            result = collector.collect(Path("/tmp"))
+        with patch.object(
+            collector, "git_state", return_value="a" * 40
+        ), patch.object(
+            collector, "command", return_value=(127, "", "not found")
+        ):
+            result = collector.collect(Path.cwd(), run_tests=False)
+
         self.assertEqual(result.tools["ruff"].status, "error")
         self.assertEqual(result.tools["bandit"].status, "error")
         self.assertEqual(result.tools["gitleaks"].status, "error")

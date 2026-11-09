@@ -8,7 +8,7 @@ from .connectors import GitHub, fetch_context
 from .llm import DemoModel, Ollama
 from .models import Context, Review
 from .orchestrator import run
-from .report import save, export_csv
+from .report import save
 from .publish import publish
 from .ci import read_evidence
 
@@ -36,9 +36,6 @@ def main():
     review.add_argument("--publish", action="store_true", help="Publier/actualiser la synthèse sur la PR")
     pub = sub.add_parser("publish", help="Publier un rapport déjà généré sur la PR")
     pub.add_argument("report", type=Path)
-    export = sub.add_parser("export", help="Exporter les indicateurs SQLite en CSV")
-    export.add_argument("--runs", type=Path, default=Path("runs"))
-    export.add_argument("--out", type=Path, default=Path("historique.csv"))
     args = parser.parse_args()
     try:
         if args.command == "demo":
@@ -77,9 +74,6 @@ def main():
             report = Review.model_validate_json(args.report.read_text(encoding="utf-8"))
             publish(report, client(), args.report.parent / "publication.json")
             print("Synthèse publiée dans GitHub.")
-        else:
-            export_csv(args.runs, args.out)
-            print(args.out)
         return 0
     except Exception as exc:
         from .security import redact
