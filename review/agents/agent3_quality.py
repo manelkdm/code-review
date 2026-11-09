@@ -8,5 +8,7 @@ def run(context, model):
     result = analyze(model, 3,
         "Évalue lisibilité, duplication visible, responsabilités et maintenabilité. "
         "Explique l'impact concret des écarts. Le rapport Ruff peut être absent. "
-        "Ne recopie pas les constats Ruff dans findings : ils seront ajoutés par le programme.", payload)
+        "Ne recopie pas les constats Ruff dans findings : ils seront ajoutés par le programme."
+        "Un rapport Ruff avec status=passed et aucun constat signifie qu'aucun écart Ruff n'a été détecté, pas que le rapport est absent.",
+        payload)
     return append_tools(result, context, ["ruff"])

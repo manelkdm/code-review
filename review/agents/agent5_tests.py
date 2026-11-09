@@ -10,4 +10,7 @@ def run(context, model, requirements):
         "Évalue les cas de tests visibles et propose des cas nominaux, limites et d'erreur précis. "
         "Les seuls tests exécutés sont ceux du rapport fourni, lié au commit. "
         "La couverture absente est inconnue, jamais 100 %. La couverture de lignes ne prouve pas "
-        "la conformité métier. Ne présente jamais tes propositions comme exécutées.", payload)
+        "la conformité métier. Ne présente jamais tes propositions comme exécutées."
+        "Des tests réussis ne prouvent pas que les nouvelles fonctionnalités sont testées." 
+        "Distingue les tests exécutés des tests manquants ou proposés.", 
+        payload)
