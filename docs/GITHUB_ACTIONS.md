@@ -27,7 +27,7 @@ Les workflows s'exécutent sur des runners GitHub temporaires. Aucune installati
 
 La collecte des preuves utilise un conteneur Docker sans accès réseau. Elle est séparée du workflow IA, qui dispose des permissions nécessaires pour publier un commentaire sur GitHub.
 
-Le modèle Ollama utilisé est `qwen2.5-coder:1.5b`, exécuté sur CPU.
+Le modèle Ollama utilisé est `qwen2.5-coder:7b`, exécuté sur CPU.
 
 ## Limites
 

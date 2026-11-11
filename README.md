@@ -12,9 +12,9 @@ GitHub Actions automatise la collecte des preuves, l'exécution des agents et la
 4. Ajoutez `Closes #12` dans la description de la PR (remplacez `12` par le numéro de votre issue).
 5. Dans **Actions**, suivez `PR Evidence Checks`, puis `AI Code Review`.
 
-**Aucune installation locale ni configuration de secrets n'est nécessaire.** GitHub Actions utilise automatiquement `GITHUB_TOKEN` et exécute Ollama avec le modèle `qwen2.5-coder:1.5b`. Les paramètres du prototype sont définis dans les fichiers `.github/workflows/`.
+**Aucune installation locale ni configuration de secrets n'est nécessaire.** GitHub Actions utilise automatiquement `GITHUB_TOKEN` et exécute Ollama avec le modèle `qwen2.5-coder:7b`. Les paramètres du prototype sont définis dans les fichiers `.github/workflows/`.
 
-Par défaut, le modèle est `qwen2.5-coder:1.5b` afin de limiter le coût CPU. Il peut être changé dans **Settings → Secrets and variables → Actions → Variables** avec `REVIEW_OLLAMA_MODEL`.
+Par défaut, le modèle est `qwen2.5-coder:7b` afin de limiter le coût CPU. Il peut être changé dans **Settings → Secrets and variables → Actions → Variables** avec `REVIEW_OLLAMA_MODEL`.
 
 La publication nécessite les permissions GitHub prévues dans `ai-review.yml`, notamment `issues: write` et `pull-requests: write`.
 
